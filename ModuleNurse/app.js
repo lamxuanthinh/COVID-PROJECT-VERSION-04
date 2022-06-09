@@ -51,7 +51,27 @@ btnLogout.onclick = () => {
     function scannerQA() {
                 scanner.addListener('scan', function(content) {
                     contents = content
-                    console.log(content);
+                    var a1;
+                    var a2;
+                    var a3;
+                    var a4;
+                    var b1;
+                    var b2;
+                    var b3;
+                    for(var i = 0;i < content.length;i++){
+                        if(content[i] == '|'){
+                           b1 = i + 1; 
+                           a1 = content.slice(0, i);
+                        }else if(content[i] == '*'){
+                            b2 = i + 1;
+                            a2 = content.slice(b1,i);
+                        }else if(content[i] == '#'){
+                            b3 = i + 1;
+                            a3 = content.slice(b2,i);
+                        }else{
+                            a4 = content.slice(b3, content.length);
+                        }
+                    };
                     if(content != undefined) {
                         sleep(0)
                         .then(() => {
@@ -62,10 +82,10 @@ btnLogout.onclick = () => {
                             overlay.style.display = 'none';
                             containerQA.style.display = 'block';
                             listForm.style.marginLeft = '-100%';
-                            inputName.value = "Lâm Xuân Thịnh";
-                            inputNoiThuongTru.value = "Thôn Hà Thượng, Xã Gio Châu, Huyện Gio Linh, Tỉnh Quảng Trị";
-                            inputQueQuan.value = "Thôn Hà Thượng, Xã Gio Châu, Huyện Gio Linh, Tỉnh Quảng Trị";
-                            inputDate.valueAsDate = date;
+                            inputName.value = a1;
+                            inputNoiThuongTru.value = a3;
+                            inputQueQuan.value = a4;
+                            inputDate.valueAsDate = a2;
                             document.getElementById('male').checked = true;
                         })
                     }
